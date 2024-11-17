@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: audio-tag
+Version: 0.0.1
+Summary: A small package for CS-E4190
+Home-page: UNKNOWN
+Author: CS-E4190
+Author-email: CS-E4190@aalto.fi
+License: UNKNOWN
+Description: # Simple Package
+        
+        This is a simple package, created as part of the course CS-E4190 (Cloud Systems and Services) at Aalto University.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

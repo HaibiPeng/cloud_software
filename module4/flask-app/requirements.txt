@@ -1,0 +1,26 @@
+######################################################################
+## This includes all the modules and the fixed version dependencies  #
+## You can add more modules below if required                        #
+######################################################################
+bson
+certifi
+chardet
+click
+docker
+Flask
+flask-mongoengine
+Flask-WTF
+idna
+itsdangerous
+Jinja2
+MarkupSafe
+mongoengine
+pymongo
+python-dateutil
+requests
+six
+urllib3
+websocket-client
+Werkzeug
+WTForms
+Pillow

@@ -1,0 +1,215 @@
+openapi: 3.0.0
+info:
+  title: Photo management API
+  version: 1.0.0
+paths:
+  /photo:
+    post:
+      description: Creates a new photo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Photo"
+      responses:
+        "201":
+          description: create photo response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        "422":
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /photos:
+    get:
+      parameters:
+      - in: query
+        name: access
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: get all photos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Photos"
+        "404":
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /photo/{photo_id}:
+    get:
+      description: get a photo with a specified ID
+      operationId: find photo by id
+      parameters:
+        - name: photo_id
+          in: path
+          description: ID of photo to fetch
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: photo response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Photo"
+        "404":
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    put:
+      description: update a photo with a specified ID
+      operationId: update photo by id
+      parameters:
+        - name: photo_id
+          in: path
+          description: ID of photo to update
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        "422":
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    delete:
+      description: delete a photo with a specified ID
+      operationId: delete photo by id
+      parameters:
+        - name: photo_id
+          in: path
+          description: ID of photo to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Photo:
+      description: A photo
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 20
+        description:
+          type: string
+          maxLength: 100
+        access:
+          type: string
+          enum:
+            - public
+            - private
+        location:
+          type: string
+        file:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        modified_date:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - access
+        - location
+        - file
+        - created_date
+        - modified_date
+              
+
+    Photos:
+      description: An array of photos
+      type: array
+      items:
+        $ref: "#/components/schemas/Photo"
+      
+    Success:
+      properties:
+        message:
+          type: string
+        id:
+          type: string
+
+    Error:
+      properties:
+        message:
+          type: string
+                
+              
+        
+  

@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+    backend:
+        image: flaskbackend:v1
+        build: 
+            context: ./exercise
+            dockerfile: Dockerfile
+        ports:
+            - 5000:5000
+        container_name: flaskbackend
+        depends_on:
+          - mongo
+
+    mongo:
+        image: mongo:4.2.0
+        ports:
+          - 1048:27017
+        # volumes:
+        #     - ~/data:/data/db
+        container_name: mongo
